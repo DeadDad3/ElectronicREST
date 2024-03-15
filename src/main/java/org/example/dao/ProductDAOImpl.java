@@ -91,12 +91,16 @@ public class ProductDAOImpl implements ProductDAO {
             preparedStatement.setString(1, product.getName());
             preparedStatement.setString(2, product.getDescription());
             preparedStatement.setDouble(3, product.getPrice());
+            preparedStatement.setInt(4, product.getCategoryId());
             preparedStatement.setInt(5, product.getId());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
+
+
+
 
     @Override
     public void deleteProduct(int id) {

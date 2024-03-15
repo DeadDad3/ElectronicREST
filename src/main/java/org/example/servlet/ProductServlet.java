@@ -3,7 +3,9 @@ package org.example.servlet;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.example.dao.ProductDAO;
 import org.example.dao.ProductDAOImpl;
+import org.example.dto.ProductDTO;
 import org.example.entity.Product;
+import org.example.mapper.ProductMapper;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @WebServlet("/products")
 public class ProductServlet extends HttpServlet {
@@ -27,8 +30,12 @@ public class ProductServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
             List<Product> products = productDAO.getAllProducts();
+            List<ProductDTO> productDTOs = products.stream()
+                    .map(ProductMapper.INSTANCE::productToProductDTO)
+                    .collect(Collectors.toList());
+
             ObjectMapper mapper = new ObjectMapper();
-            String productsJson = mapper.writeValueAsString(products);
+            String productsJson = mapper.writeValueAsString(productDTOs);
 
             resp.setContentType("application/json");
             resp.setCharacterEncoding("UTF-8");
@@ -38,6 +45,7 @@ public class ProductServlet extends HttpServlet {
             resp.getWriter().write("Ошибка при получении списка товаров: " + e.getMessage());
         }
     }
+
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -53,7 +61,6 @@ public class ProductServlet extends HttpServlet {
             newProduct.setName(name);
             newProduct.setDescription(description);
             newProduct.setPrice(price);
-            newProduct.setCategory(category);
 
             // Добавляем товар в базу данных
             productDAO.addProduct(newProduct);
@@ -89,7 +96,6 @@ public class ProductServlet extends HttpServlet {
             updatedProduct.setName(name);
             updatedProduct.setDescription(description);
             updatedProduct.setPrice(price);
-            updatedProduct.setCategory(category);
 
             // Обновляем информацию о товаре в базе данных
             productDAO.updateProduct(updatedProduct);
