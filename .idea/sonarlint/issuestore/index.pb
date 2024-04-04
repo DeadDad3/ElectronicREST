@@ -83,10 +83,6 @@ Q.idea/sonarlint/securityhotspotstore/3/f/3fb9b962b76950450e15ad19b6481d48867b7b
 -.idea/sonarlint/securityhotspotstore/index.pb,8\8\88a9255124c95bdc913197c120a8d560edc59c8e
 c
 3src/test/java/org/example/dao/OrderDAOImplTest.java,d\4\d4cc83d23748d3646cd1771c41168ecab2f80ced
-^
-.src/test/java/org/example/dao/RoleDAOTest.java,a\3\a3304f924e7b21da31ebd394bbdc0e08e56e5e01
-d
-4src/main/java/org/example/entity/PropertiesUtil.java,0\f\0fb01e6a090383765f3cf15fbfe62002615cc5e3
 E
 src/main/sql/data.sql,f\d\fd6d62d981e62dc13976859408b518f92c2a29af
 w
