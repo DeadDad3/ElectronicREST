@@ -53,7 +53,7 @@ public class ProductServlet extends HttpServlet {
             // Получаем данные о новом товаре из запроса
             String name = req.getParameter("name");
             String description = req.getParameter("description");
-            double price = Double.parseDouble(req.getParameter("price")); // Возможно возникновение NumberFormatException
+            double price = Double.parseDouble(req.getParameter("price"));
             String category = req.getParameter("category");
 
             // Создаем новый объект товара

@@ -3,7 +3,7 @@ INSERT INTO products (name, description, price, category) VALUES ('Gaming Laptop
 INSERT INTO products (name, description, price, category) VALUES ('Wireless Mouse', 'A high-precision wireless mouse', 50.00, 'Accessories');
 
 -- Добавление заказа
-INSERT INTO orders DEFAULT VALUES; -- Создает заказ с ID 1
+INSERT INTO orders DEFAULT VALUES;
 
 -- Связывание продуктов с заказом
 INSERT INTO order_products (orderid, productid) VALUES (1, 1);

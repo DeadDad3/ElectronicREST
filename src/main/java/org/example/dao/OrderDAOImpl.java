@@ -44,7 +44,7 @@ public class OrderDAOImpl implements OrderDAO {
             List<Product> products = new ArrayList<>();
             while (resultSet.next()) {
                 int productId = resultSet.getInt("productId");
-                Product product = getProductById(productId); // Assuming getProductById is implemented in ProductDAOImpl
+                Product product = getProductById(productId);
                 products.add(product);
             }
             order.setId(id);

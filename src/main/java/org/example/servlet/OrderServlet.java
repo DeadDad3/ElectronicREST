@@ -19,15 +19,13 @@ public class OrderServlet extends HttpServlet {
 
     @Override
     public void init() {
-        // Инициализируйте ProductDAOImpl
         ProductDAO productDAO = new ProductDAOImpl();
-        // Предполагаем, что OrderDAOImpl требует ProductDAO в конструкторе
         this.orderDAO = new OrderDAOImpl(productDAO);
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String orderIdParam = req.getParameter("id"); // Получаем ID заказа из параметров запроса
+        String orderIdParam = req.getParameter("id");
 
         if (orderIdParam != null) {
             try {
@@ -62,12 +60,11 @@ public class OrderServlet extends HttpServlet {
             ObjectMapper mapper = new ObjectMapper();
             Order order = mapper.readValue(req.getReader(), Order.class);
 
-            orderDAO.addOrder(order); // Добавляем заказ в базу данных
-
+            orderDAO.addOrder(order);
             resp.setContentType("application/json");
             resp.setCharacterEncoding("UTF-8");
             resp.getWriter().write(mapper.writeValueAsString(order));
-            resp.setStatus(HttpServletResponse.SC_CREATED); // 201 Created
+            resp.setStatus(HttpServletResponse.SC_CREATED);
         } catch (Exception e) {
             resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
             resp.getWriter().write("Ошибка при создании заказа: " + e.getMessage());
@@ -79,9 +76,9 @@ public class OrderServlet extends HttpServlet {
         try {
             int id = Integer.parseInt(req.getParameter("id"));
 
-            orderDAO.deleteOrder(id); // Удаляем заказ из базы данных
+            orderDAO.deleteOrder(id);
 
-            resp.setStatus(HttpServletResponse.SC_NO_CONTENT); // 204 No Content
+            resp.setStatus(HttpServletResponse.SC_NO_CONTENT);
         } catch (NumberFormatException e) {
             resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
             resp.getWriter().write("Некорректный формат ID заказа");

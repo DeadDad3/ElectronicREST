@@ -99,9 +99,6 @@ public class ProductDAOImpl implements ProductDAO {
         }
     }
 
-
-
-
     @Override
     public void deleteProduct(int id) {
         try (Connection connection = DatabaseConnection.getConnection();

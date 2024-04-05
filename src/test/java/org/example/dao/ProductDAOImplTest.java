@@ -60,33 +60,27 @@ class ProductDAOImplTest {
         product.setDescription("New Description");
         product.setPrice(20.0);
 
-        // Подготовка моков для добавления продукта
         when(mockPreparedStatement.executeUpdate()).thenReturn(1);
 
         dao.addProduct(product);
 
-        // Убедимся, что executeUpdate был вызван
         verify(mockPreparedStatement).executeUpdate();
-        // Дополнительные утверждения можно добавить в зависимости от того, как метод addProduct изменяет объект Product или взаимодействует с базой данных
     }
 
     @Test
     void updateProductTest() throws Exception {
         ProductDAOImpl dao = new ProductDAOImpl();
         Product product = new Product();
-        product.setId(1); // Предположим, что продукт с таким ID существует
+        product.setId(1);
         product.setName("Updated Name");
         product.setDescription("Updated Description");
         product.setPrice(25.0);
 
-        // Подготовка моков для обновления продукта
         when(mockPreparedStatement.executeUpdate()).thenReturn(1);
 
         dao.updateProduct(product);
 
-        // Проверка, что метод executeUpdate был вызван
         verify(mockPreparedStatement).executeUpdate();
-        // Аналогично, дополнительные утверждения могут быть добавлены для проверки обновления объекта Product
     }
 
 
@@ -94,12 +88,10 @@ class ProductDAOImplTest {
     void deleteProductTest() throws Exception {
         ProductDAOImpl dao = new ProductDAOImpl();
 
-        // Подготовка моков для удаления продукта
         when(mockPreparedStatement.executeUpdate()).thenReturn(1);
 
-        dao.deleteProduct(1); // Предположим, что продукт с таким ID существует
+        dao.deleteProduct(1);
 
-        // Убедимся, что executeUpdate был вызван для удаления
         verify(mockPreparedStatement).executeUpdate();
     }
 }

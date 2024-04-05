@@ -16,13 +16,10 @@ public class DatabaseConnection {
         }
         return connection;
     }
-
-    // Используй этот метод в тестах для установки мок-соединения
     public static void setMockConnection(Connection mockConnection) {
         connection = mockConnection;
     }
 
-    // Добавь этот метод для сброса состояния между тестами
     public static void resetConnection() {
         connection = null;
     }
